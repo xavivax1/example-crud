@@ -7,6 +7,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const hbs = require('hbs');
+const apiRouter = require('./routes/api');
 
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/api', apiRouter);
 
 app.use((req, res, next) => {
   res.status(404);
